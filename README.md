@@ -1,4 +1,4 @@
-# book
+# Flutter book app
 
 A new Flutter project.
 
