@@ -17,6 +17,7 @@ class _RatingWidgetState extends State<RatingWidget> {
     final height = MediaQuery.of(context).size.height;
 
     return Container(
+      // color: Colors.red,
       width: width * 0.28,
       height: height * 0.05,
       child: ListView.separated(
@@ -26,7 +27,7 @@ class _RatingWidgetState extends State<RatingWidget> {
         itemBuilder: (BuildContext context, rating) {
           return SvgPicture.asset(
             'assets/icons/empty_star.svg',
-            width: width * 0.04,
+            width: width * 0.03,
             // color: Color(0xff8f9bb3),
             color: Color(0xffff9d2b),
           );

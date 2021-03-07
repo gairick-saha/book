@@ -3,15 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class BookCover extends GetWidget<EpubController> {
-  final cornerRadius;
-  final width;
-  final height;
-  BookCover(
-      {Key key,
-      @required this.cornerRadius,
-      @required this.width,
-      @required this.height})
-      : super(key: key);
+  final double cornerRadius;
+  final double width;
+  final double height;
+  final Color colour;
+
+  BookCover({
+    @required this.cornerRadius,
+    @required this.width,
+    @required this.height,
+    @required this.colour,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class BookCover extends GetWidget<EpubController> {
           borderRadius: BorderRadius.all(
             Radius.circular(this.cornerRadius),
           ),
-          color: Color(0xff838589),
+          color: this.colour,
         ),
       ),
     );

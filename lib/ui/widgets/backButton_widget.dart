@@ -1,22 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class BackButtonWidget extends StatelessWidget {
   final Widget route;
-  BackButtonWidget({Key key, @required this.route}) : super(key: key);
+  final Widget icon;
+  BackButtonWidget({
+    @required this.route,
+    @required this.icon,
+  });
 
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      icon: SvgPicture.asset(
-        'assets/icons/arrow_left.svg',
-        height: 12.0,
-        width: 16.0,
-      ),
+      splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
+      icon: this.icon,
       onPressed: () {
         print('appbar back button');
-        Get.offAll(() => this.route);
+        Get.offAll(
+          () => this.route,
+        );
       },
     );
   }
