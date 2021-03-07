@@ -1,3 +1,4 @@
+import 'package:book/bindings/epub_binding.dart';
 import 'package:flutter/material.dart';
 import 'package:book/ui/screens/detail_book_screen.dart';
 import 'package:get/get.dart';
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: DetailBookScreen(),
+      initialBinding: EpubBinding(),
     );
   }
 }
