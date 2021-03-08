@@ -416,7 +416,6 @@ Widget _bottomSheet(
       padding: EdgeInsets.only(
         left: screenWidth * 0.06,
         right: screenWidth * 0.06,
-        // bottom: screenHeight * 0.03,
       ),
       child: Row(
         children: [
@@ -467,22 +466,6 @@ Widget _bottomSheet(
                   ),
                 ),
               ),
-
-              // Container(
-              //   clipBehavior: Clip.hardEdge,
-              //   width: screenWidth * 0.11,
-              //   height: screenHeight * 0.055,
-              //   decoration: BoxDecoration(
-              //     // color: Color(0xffff7e00),
-              //     borderRadius: BorderRadius.all(
-              //       Radius.circular(10.0),
-              //     ),
-              //     border: Border.all(
-              //       color: Color(0xffff7e00),
-              //       width: 2,
-              //     ),
-              //   ),
-              // ),
             ],
           ),
           SizedBox(
