@@ -16,7 +16,6 @@ class BackButtonWidget extends StatelessWidget {
       highlightColor: Colors.transparent,
       icon: this.icon,
       onPressed: () {
-        print('appbar back button');
         Get.offAll(
           () => this.route,
         );

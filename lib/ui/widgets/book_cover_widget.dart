@@ -4,14 +4,14 @@ import 'package:get/get.dart';
 
 class BookCover extends GetWidget<EpubController> {
   final double cornerRadius;
-  final double width;
-  final double height;
+  final double screenWidth;
+  final double screenHeight;
   final Color colour;
 
   BookCover({
     @required this.cornerRadius,
-    @required this.width,
-    @required this.height,
+    @required this.screenWidth,
+    @required this.screenHeight,
     @required this.colour,
   });
 
@@ -22,8 +22,8 @@ class BookCover extends GetWidget<EpubController> {
         controller.openBook();
       },
       child: Container(
-        width: this.width,
-        height: this.height,
+        width: this.screenWidth,
+        height: this.screenHeight,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(
             Radius.circular(this.cornerRadius),

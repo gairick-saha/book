@@ -181,8 +181,8 @@ Widget _bannerWidget(
             },
           ),
           BookCover(
-            width: screenWidth * 0.375,
-            height: screenHeight * 0.26,
+            screenWidth: screenWidth * 0.375,
+            screenHeight: screenHeight * 0.26,
             cornerRadius: 10.0,
             colour: Color(0xff838589),
           ),

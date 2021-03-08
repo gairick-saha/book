@@ -1,14 +1,15 @@
 import 'dart:io';
 import 'package:book/ui/screens/detail_book_screen.dart';
+import 'package:book/ui/screens/episode_screen.dart';
 import 'package:book/ui/widgets/backButton_widget.dart';
 import 'package:book/ui/widgets/book_cover_widget.dart';
 import 'package:book/ui/widgets/book_popularity_widget.dart';
 import 'package:book/ui/widgets/divider_widget.dart';
 import 'package:book/ui/widgets/episode_card_widget.dart';
-import 'package:book/ui/widgets/episode_preview_card_widget.dart';
 import 'package:book/ui/widgets/rating_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 class EpisodesResumeScreen extends StatelessWidget {
   const EpisodesResumeScreen({Key key}) : super(key: key);
@@ -88,6 +89,8 @@ class EpisodesResumeScreen extends StatelessWidget {
                             left: width * 0.043,
                           ),
                           child: BookPopularityWidget(
+                            screenWidth: width,
+                            screenHeight: height,
                             leftText: '14.1k',
                             middleText: '5.6k',
                             rightText: '3.9k',
@@ -136,7 +139,10 @@ class EpisodesResumeScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        RatingWidget(),
+                        RatingWidget(
+                          screenWidth: width,
+                          screenHeight: height,
+                        ),
                       ],
                     ),
                   ),
@@ -160,8 +166,8 @@ class EpisodesResumeScreen extends StatelessWidget {
                       ),
                       child: BookCover(
                         cornerRadius: 0.0,
-                        width: width * 0.3,
-                        height: height * 0.245,
+                        screenWidth: width * 0.3,
+                        screenHeight: height * 0.245,
                         colour: Color(0xffbec2ce),
                       ),
                     ),
@@ -193,27 +199,42 @@ class EpisodesResumeScreen extends StatelessWidget {
             itemCount: 10,
             itemBuilder: ((BuildContext context, int index) {
               if (index == 0) {
-                return EpisodePreviewCardWidget(
-                  screenHeight: height,
-                  screenWidth: width,
+                return InkWell(
+                  onTap: () {
+                    print('List Item : $index');
+                    Get.to(() => EpisodeScreen());
+                  },
+                  child: EpisodeCardWidget(
+                    screenHeight: height,
+                    screenWidth: width,
+                    episodeTitle: 'Preview',
+                    episodeDuration: Duration(
+                      minutes: 2,
+                      seconds: 14,
+                    ),
+                  ),
                 );
               } else {
-                return EpisodeCardWidget(
-                  screenHeight: height,
-                  screenWidth: width,
-                  episodeIndex: index,
-                  episodeTitle: 'Testing $index',
-                  episodeDuration: Duration(
-                    hours: 1,
-                    minutes: 25,
-                    seconds: 25,
+                return InkWell(
+                  onTap: () {
+                    print('List Item : $index');
+                  },
+                  child: EpisodeCardWidget(
+                    screenHeight: height,
+                    screenWidth: width,
+                    episodeTitle: 'Ep $index: Testing',
+                    episodeDuration: Duration(
+                      hours: 1,
+                      minutes: 30,
+                      seconds: 25,
+                    ),
                   ),
                 );
               }
             }),
             separatorBuilder: (BuildContext context, _) => CustomDivider(
-              width: width * 0.9,
-              height: height * 0.001,
+              screenWidth: width * 0.09,
+              screenHeight: height * 0.0015,
               shape: BoxShape.rectangle,
               color: Color(0xfff4f4f4),
             ),
@@ -315,8 +336,8 @@ Widget _navButton(
         ),
       ),
       CustomDivider(
-        width: screenWidth * 0.004,
-        height: screenHeight * 0.055,
+        screenWidth: screenWidth * 0.004,
+        screenHeight: screenHeight * 0.055,
         shape: BoxShape.rectangle,
         color: Color(0xfff3f5fa),
       ),
@@ -342,8 +363,8 @@ Widget _navButton(
         ),
       ),
       CustomDivider(
-        width: screenWidth * 0.004,
-        height: screenHeight * 0.055,
+        screenWidth: screenWidth * 0.004,
+        screenHeight: screenHeight * 0.055,
         shape: BoxShape.rectangle,
         color: Color(0xfff3f5fa),
       ),
@@ -399,20 +420,70 @@ Widget _bottomSheet(
       ),
       child: Row(
         children: [
-          Container(
-            clipBehavior: Clip.hardEdge,
-            width: screenWidth * 0.11,
-            height: screenHeight * 0.055,
-            decoration: BoxDecoration(
-              color: Color(0xffd8d8d8),
-              borderRadius: BorderRadius.all(
-                Radius.circular(10.0),
+          Stack(
+            children: [
+              Container(
+                clipBehavior: Clip.none,
+                width: screenWidth * 0.11,
+                height: screenHeight * 0.055,
+                decoration: BoxDecoration(
+                  color: Color(0xffbec2ce),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(10.0),
+                  ),
+                  border: Border.all(
+                    color: Color(0xfff4f4f4),
+                    width: 2,
+                  ),
+                ),
               ),
-              border: Border.all(
-                color: Color(0xfff4f4f4),
-                width: 2,
+              ShaderMask(
+                shaderCallback: (rect) {
+                  return SweepGradient(
+                      colors: [
+                        Color(0xffff7e00),
+                        Colors.transparent,
+                      ],
+                      center: Alignment.topCenter,
+                      startAngle: 0.0,
+                      endAngle: 1.5,
+                      stops: [
+                        0.5,
+                        0.5,
+                      ]).createShader(rect);
+                },
+                child: Container(
+                  width: screenWidth * 0.11,
+                  height: screenHeight * 0.055,
+                  decoration: BoxDecoration(
+                    color: Colors.transparent,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(10.0),
+                    ),
+                    border: Border.all(
+                      color: Color(0xffff7e00),
+                      width: 2,
+                    ),
+                  ),
+                ),
               ),
-            ),
+
+              // Container(
+              //   clipBehavior: Clip.hardEdge,
+              //   width: screenWidth * 0.11,
+              //   height: screenHeight * 0.055,
+              //   decoration: BoxDecoration(
+              //     // color: Color(0xffff7e00),
+              //     borderRadius: BorderRadius.all(
+              //       Radius.circular(10.0),
+              //     ),
+              //     border: Border.all(
+              //       color: Color(0xffff7e00),
+              //       width: 2,
+              //     ),
+              //   ),
+              // ),
+            ],
           ),
           SizedBox(
             width: screenWidth * 0.03,
