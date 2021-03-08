@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:book/ui/screens/detail_book_screen.dart';
 import 'package:book/ui/screens/episode_screen.dart';
 import 'package:book/ui/widgets/backButton_widget.dart';
@@ -183,7 +185,7 @@ class EpisodesResumeScreen extends StatelessWidget {
         body: Container(
           padding: EdgeInsets.only(
             top: height * 0.035,
-            bottom: height * 0.11,
+            bottom: Platform.isAndroid ? height * 0.11 : height * 0.08,
           ),
           decoration: BoxDecoration(
             color: Color(0xfff4f4f4),
