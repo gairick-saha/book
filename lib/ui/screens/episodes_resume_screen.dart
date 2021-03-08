@@ -185,7 +185,7 @@ class EpisodesResumeScreen extends StatelessWidget {
         body: Container(
           padding: EdgeInsets.only(
             top: height * 0.035,
-            bottom: Platform.isAndroid ? height * 0.11 : height * 0.08,
+            bottom: Platform.isAndroid ? height * 0.11 : height * 0.089,
           ),
           decoration: BoxDecoration(
             color: Color(0xfff4f4f4),
