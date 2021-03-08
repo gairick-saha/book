@@ -18,7 +18,13 @@ class DurationFormatter {
     if (tokens.isNotEmpty || minutes != 0) {
       tokens.add('$minutes');
     }
-    tokens.add('$seconds');
+    if (tokens.isNotEmpty || seconds != 0) {
+      if (seconds == 0) {
+        tokens.add('${seconds}0');
+      } else {
+        tokens.add('$seconds');
+      }
+    }
 
     return tokens.join(':');
   }

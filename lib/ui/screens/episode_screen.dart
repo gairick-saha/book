@@ -1,5 +1,3 @@
-import 'package:book/ui/screens/episodes_resume_screen.dart';
-import 'package:book/ui/widgets/backButton_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -23,12 +21,14 @@ class EpisodeScreen extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           children: [
             AppBar(
-              leading: BackButtonWidget(
-                route: EpisodesResumeScreen(),
+              leading: IconButton(
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
                 icon: Icon(
                   Icons.arrow_back_ios,
                   color: Colors.black,
                 ),
+                onPressed: () => Navigator.pop(context),
               ),
               backgroundColor: Colors.transparent,
               elevation: 0,

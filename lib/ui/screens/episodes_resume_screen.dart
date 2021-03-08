@@ -1,4 +1,6 @@
 import 'dart:io';
+import 'package:book/controller/episode_controller.dart';
+import 'package:book/models/episode_model.dart';
 import 'package:book/ui/screens/detail_book_screen.dart';
 import 'package:book/ui/screens/episode_screen.dart';
 import 'package:book/ui/widgets/backButton_widget.dart';
@@ -16,6 +18,7 @@ class EpisodesResumeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _listEpisodes = Get.put(EpisodeController());
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
 
@@ -54,6 +57,7 @@ class EpisodesResumeScreen extends StatelessWidget {
         ],
       ),
       body: NestedScrollView(
+        physics: NeverScrollableScrollPhysics(),
         headerSliverBuilder: (BuildContext context, bool isScrolled) {
           return <Widget>[
             SliverAppBar(
@@ -196,7 +200,8 @@ class EpisodesResumeScreen extends StatelessWidget {
             color: Color(0xfff4f4f4),
           ),
           child: ListView.separated(
-            itemCount: 10,
+            shrinkWrap: true,
+            itemCount: _listEpisodes.allEpisode.length,
             itemBuilder: ((BuildContext context, int index) {
               if (index == 0) {
                 return InkWell(
@@ -207,7 +212,8 @@ class EpisodesResumeScreen extends StatelessWidget {
                   child: EpisodeCardWidget(
                     screenHeight: height,
                     screenWidth: width,
-                    episodeTitle: 'Preview',
+                    episodeTitle:
+                        '${_listEpisodes.allEpisode[index].episodeTitle}',
                     episodeDuration: Duration(
                       minutes: 2,
                       seconds: 14,
@@ -222,12 +228,10 @@ class EpisodesResumeScreen extends StatelessWidget {
                   child: EpisodeCardWidget(
                     screenHeight: height,
                     screenWidth: width,
-                    episodeTitle: 'Ep $index: Testing',
-                    episodeDuration: Duration(
-                      hours: 1,
-                      minutes: 30,
-                      seconds: 25,
-                    ),
+                    episodeTitle:
+                        'Ep ${_listEpisodes.allEpisode[index].episodeNumber}: ${_listEpisodes.allEpisode[index].episodeTitle}',
+                    episodeDuration:
+                        _listEpisodes.allEpisode[index].episodeDuration,
                   ),
                 );
               }
