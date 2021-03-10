@@ -64,6 +64,9 @@ Widget _contentWidget(
       ),
       color: Color(0xffeae7e7),
     ),
+    padding: EdgeInsets.symmetric(
+      horizontal: screenWidth * 0.03,
+    ),
     child: Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -81,16 +84,17 @@ Widget _contentWidget(
         SizedBox(
           height: screenHeight * 0.02,
         ),
-        Text(
-          '''A New York Times and USA Today Bestselling\nAuthor, \nPenelope Sky is known for her dark romance that \n\nmakes you fall for her characters....no matter how\ndark\nthey seem. Her books are being translated into\nseveral\nlanguages around the world, and she's sold more\nthan ''',
-          style: TextStyle(
-            color: Color(0xff838486),
-            fontWeight: FontWeight.w400,
-            fontFamily: "Montserrat",
-            fontStyle: FontStyle.normal,
-            fontSize: screenWidth * 0.032,
+        FittedBox(
+          child: Text(
+            '''A New York Times and USA Today Bestselling\nAuthor, \nPenelope Sky is known for her dark romance that \n\nmakes you fall for her characters....no matter how\ndark\nthey seem. Her books are being translated into\nseveral\nlanguages around the world, and she's sold more\nthan ''',
+            style: TextStyle(
+              color: Color(0xff838486),
+              fontWeight: FontWeight.w400,
+              fontFamily: "Montserrat",
+              fontStyle: FontStyle.normal,
+            ),
+            textAlign: TextAlign.left,
           ),
-          textAlign: TextAlign.left,
         ),
       ],
     ),
